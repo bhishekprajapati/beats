@@ -1,8 +1,18 @@
 import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, makeStateKey, PLATFORM_ID, TransferState } from '@angular/core';
-import { TFilterList } from '@components/search-filters/schemas';
 import { firstValueFrom } from 'rxjs';
+import z from 'zod';
+
+export type TFilterList = z.infer<typeof filterListSchema>;
+
+const filterSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+  apiKeys: z.array(z.string()),
+});
+
+const filterListSchema = z.array(filterSchema);
 
 @Injectable({
   providedIn: 'root',

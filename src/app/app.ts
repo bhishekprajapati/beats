@@ -1,13 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BeatCard } from '@components/beat-card/beat-card';
-import { BeatCardCover } from '@components/beat-card/beat-card-cover/beat-card-cover';
-import { BeatCardHeader } from '@components/beat-card/beat-card-header/beat-card-header';
-import { BeatCardTitle } from '@components/beat-card/beat-card-title/beat-card-title';
+import { Header } from './globals/header/header';
+import { MaxContainer } from './layouts/max-container/max-container';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BeatCard, BeatCardCover, BeatCardHeader, BeatCardTitle],
+  imports: [RouterOutlet, Header, MaxContainer],
   templateUrl: './app.html',
 })
 export class App {
