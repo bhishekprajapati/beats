@@ -34,6 +34,9 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.1
         version: 20.3.1(fa4bd4732ee75aab3ff45af7720114cd)
+      '@tanstack/angular-query-experimental':
+        specifier: 5.87.5
+        version: 5.87.5(@angular/common@20.3.0(@angular/core@20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1))
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -2083,6 +2086,27 @@ packages:
     resolution:
       {
         integrity: sha512-HLgx6YSFKJT7rJqh9oJs/TkBFhxuMOfUKSBEPYwV+t78POOBsdQ7crhZLzwcH3T0UyUuOzU/GK5pk5eKr3wCiQ==,
+      }
+
+  '@tanstack/angular-query-experimental@5.87.5':
+    resolution:
+      {
+        integrity: sha512-+YaptBGOeYpirD+pZSBXiOmbVYbaEzzLFTOI43kq60KZhoF6UIaBJQsf1v8QI+f4MW2Nt16MPY/bEFnAx5/sNA==,
+      }
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+
+  '@tanstack/query-core@5.87.4':
+    resolution:
+      {
+        integrity: sha512-uNsg6zMxraEPDVO2Bn+F3/ctHi+Zsk+MMpcN8h6P7ozqD088F6mFY5TfGM7zuyIrL7HKpDyu6QHfLWiDxh3cuw==,
+      }
+
+  '@tanstack/query-devtools@5.87.3':
+    resolution:
+      {
+        integrity: sha512-LkzxzSr2HS1ALHTgDmJH5eGAVsSQiuwz//VhFW5OqNk0OQ+Fsqba0Tsf+NzWRtXYvpgUqwQr4b2zdFZwxHcGvg==,
       }
 
   '@tufjs/canonical-json@2.0.0':
@@ -6476,6 +6500,17 @@ snapshots:
       '@tailwindcss/oxide': 4.1.13
       postcss: 8.5.6
       tailwindcss: 4.1.13
+
+  '@tanstack/angular-query-experimental@5.87.5(@angular/common@20.3.0(@angular/core@20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1))':
+    dependencies:
+      '@angular/common': 20.3.0(@angular/core@20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@tanstack/query-core': 5.87.4
+      '@tanstack/query-devtools': 5.87.3
+
+  '@tanstack/query-core@5.87.4': {}
+
+  '@tanstack/query-devtools@5.87.3': {}
 
   '@tufjs/canonical-json@2.0.0': {}
 
