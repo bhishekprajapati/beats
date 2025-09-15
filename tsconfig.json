@@ -15,12 +15,8 @@
     "module": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@shared/*": [
-        "src/app/shared/*"
-      ],
-      "@components/*": [
-        "src/app/components/*"
-      ]
+      "@shared/*": ["src/app/shared/*"],
+      "@components/*": ["src/app/components/*"]
     }
   },
   "angularCompilerOptions": {
