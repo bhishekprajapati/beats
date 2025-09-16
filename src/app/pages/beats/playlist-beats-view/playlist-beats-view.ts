@@ -1,13 +1,12 @@
+import { ContentViewContent } from '@/app/layouts/content-view/content-view-content/content-view-content';
+import { ContentViewItem } from '@/app/layouts/content-view/content-view-item/content-view-item';
 import { Component, inject } from '@angular/core';
 import { BeatCard } from '@components/beat-card/beat-card';
-import { BeatCardCover } from '@components/beat-card/beat-card-cover/beat-card-cover';
-import { BeatCardHeader } from '@components/beat-card/beat-card-header/beat-card-header';
-import { BeatCardTitle } from '@components/beat-card/beat-card-title/beat-card-title';
 import { PlaylistService } from 'src/app/services/playlist-service';
 
 @Component({
   selector: 'app-playlist-beats-view',
-  imports: [BeatCard, BeatCardCover, BeatCardHeader, BeatCardTitle],
+  imports: [BeatCard, ContentViewContent, ContentViewItem],
   templateUrl: './playlist-beats-view.html',
 })
 export class PlaylistBeatsView {

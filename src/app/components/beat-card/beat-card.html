@@ -1,3 +1,15 @@
-<article class="@container max-w-72">
-  <ng-content></ng-content>
+<article class="@container">
+  <figure class="w-full mb-4">
+    <img
+      [src]="src"
+      loading="lazy"
+      decoding="async"
+      class="w-full aspect-square object-cover object-center rounded-[2.5cqw] shadow-[-.25rem_.25rem_4rem_#ffffff20]"
+    />
+  </figure>
+
+  <header>
+    <h3 class="font-medium text-[1rem]">{{ title }}</h3>
+    <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+  </header>
 </article>

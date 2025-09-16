@@ -1,10 +1,50 @@
-@if (playlist.query.isSuccess()) {
-  <app-beat-card>
-    <app-beat-card-cover
-      src="https://illpeoplemusic-v2-asserts-dev.s3.ap-south-1.amazonaws.com/beats/user-68b6e15726fe0a99804c63a8/beat-218980/cover-picture.jpg"
-    />
-    <app-beat-card-header>
-      <app-beat-card-title>Ganster Aura</app-beat-card-title>
-    </app-beat-card-header>
-  </app-beat-card>
-}
+<app-content-view-content>
+  @if (playlist.query.isSuccess()) {
+    @let data = playlist.query.data();
+
+    @if (data.playlist === 'latest' && data.result.status === 'success') {
+      @let beats = data.result.data;
+
+      @for (beat of beats; track beat._id) {
+        <app-content-view-item>
+          <app-beat-card
+            [src]="beat.cover_picture"
+            [title]="beat.title"
+            [storeName]="beat.producer.store.general.name"
+          >
+          </app-beat-card>
+        </app-content-view-item>
+      }
+    }
+
+    @if (data.playlist === 'onescroll') {
+      @let beats = data.result.beats;
+
+      @for (beat of beats; track beat._id) {
+        <app-content-view-item>
+          <app-beat-card
+            [src]="beat.cover_picture"
+            [title]="beat.title"
+            [storeName]="beat.producer.store.general.name"
+          >
+          </app-beat-card>
+        </app-content-view-item>
+      }
+    }
+
+    @if (data.playlist === 'trending') {
+      @let beats = data.result.playlists.at(0)?.beats ?? [];
+
+      @for (beat of beats; track beat._id) {
+        <app-content-view-item>
+          <app-beat-card
+            [src]="beat.cover_picture"
+            [title]="beat.title"
+            [storeName]="beat.producer.store.general.name"
+          >
+          </app-beat-card>
+        </app-content-view-item>
+      }
+    }
+  }
+</app-content-view-content>

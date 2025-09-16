@@ -9,6 +9,26 @@ import {
 import { OriginService } from './origin-service';
 import { firstValueFrom } from 'rxjs';
 
+type TProducer = {
+  _id: string;
+  user: string;
+  is_verified: false;
+  store: {
+    general: {
+      name: string;
+      hide_about?: boolean;
+      artist_first_name?: string;
+      artist_second_name?: string;
+    };
+    brand: {
+      picture: string;
+      summary?: string;
+      instagram?: string;
+      youtube?: string;
+    };
+  };
+};
+
 type TQueryResult =
   | {
       playlist: SelectPlaylistKind<'onescroll'>;
@@ -39,6 +59,7 @@ type TQueryResult =
             allow_negotiations: boolean;
             handle: string;
           };
+          producer: TProducer;
         }>;
         oneScrollComputedAt: Date;
       };
@@ -62,6 +83,7 @@ type TQueryResult =
               tag: string[];
               preview: string;
               cover_picture: string;
+              producer: TProducer;
             }[];
           }
         | {
@@ -95,6 +117,7 @@ type TQueryResult =
             owner: string;
             play_count: number;
             disable_mp3_downloads: boolean;
+            producer: TProducer;
           }[];
         }[];
       };
