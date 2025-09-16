@@ -179,5 +179,5 @@ export class PlaylistService {
     },
   }));
 
-  constructor(private readonly playlistQueryOptions: PlaylistQueryOptionsProvider) {}
+  constructor(readonly playlistQueryOptions: PlaylistQueryOptionsProvider) {}
 }

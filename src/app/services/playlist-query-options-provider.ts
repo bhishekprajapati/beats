@@ -1,6 +1,8 @@
-import { Injectable, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import z from 'zod';
+import { PlatformService } from './platform-service';
+import { fa } from 'zod/v4/locales';
 
 export const PUBLIC_PLAYLIST_FILTERS = [
   'wav_under_999',
@@ -29,6 +31,23 @@ export const playlistQueryOptions = z.discriminatedUnion('playlist', [
   }),
 ]);
 
+function paramMapToRecord(map: ParamMap): Record<string, string | null> {
+  const queryParams: Record<string, string | null> = {};
+
+  map.keys.forEach((key) => {
+    const value = map.get(key);
+    queryParams[key] = value;
+  });
+
+  return queryParams;
+}
+
+function getValidatedQueryParams(map: ParamMap) {
+  const params = paramMapToRecord(map);
+  const result = playlistQueryOptions.safeParse(params);
+  return result.data ?? { playlist: 'onescroll', page: 1 };
+}
+
 export type TPlaylistKind = TPlaylistQueryOptions['playlist'];
 export type SelectPlaylistKind<K extends TPlaylistKind> = K;
 
@@ -36,24 +55,47 @@ export type SelectPlaylistKind<K extends TPlaylistKind> = K;
   providedIn: 'root',
 })
 export class PlaylistQueryOptionsProvider {
-  opts = signal<TPlaylistQueryOptions | undefined>(undefined);
+  readonly opts = signal<TPlaylistQueryOptions | undefined>(undefined);
+  readonly isTrendingActive = computed(() => this.opts()?.playlist === 'trending');
+  readonly isLatestActive = computed(() => this.opts()?.playlist === 'latest');
+  readonly isOneScrollActive = computed(() => this.opts()?.playlist === 'onescroll');
 
-  constructor(private route: ActivatedRoute) {
-    const keys = this.route.snapshot.queryParamMap.keys;
-    const queryParams: Record<any, any> = {};
+  readonly hasWavUnder999Filter = computed(() => {
+    const opts = this.opts();
+    return (opts && opts.playlist === 'latest' && opts.filter === 'wav_under_999') ?? false;
+  });
 
-    keys.forEach((key) => {
-      const value = this.route.snapshot.queryParamMap.get(key);
-      queryParams[key] = value;
-    });
+  readonly hasWavStemsUnder1999Filter = computed(() => {
+    const opts = this.opts();
+    return (opts && opts.playlist === 'latest' && opts.filter === 'wav_stems_1999') ?? false;
+  });
 
-    const result = playlistQueryOptions
-      .default({
-        playlist: 'onescroll',
-        page: 1,
-      })
-      .safeParse(queryParams);
+  readonly hasBeatsWithExclusiveFilter = computed(() => {
+    const opts = this.opts();
+    return (opts && opts.playlist === 'latest' && opts.filter === 'beats_with_exclusive') ?? false;
+  });
 
-    this.opts.set(result.data ?? { playlist: 'onescroll', page: 1 });
+  private readonly router = inject(Router);
+
+  constructor(
+    private route: ActivatedRoute,
+    private platform: PlatformService,
+  ) {
+    if (this.platform.isServer()) {
+      this.opts.set(getValidatedQueryParams(this.route.snapshot.paramMap));
+    } else {
+      this.route.queryParamMap.subscribe((params) => {
+        this.opts.set(getValidatedQueryParams(params));
+      });
+    }
+  }
+
+  updateOptions(opts?: TPlaylistQueryOptions) {
+    if (this.platform.isBrowser()) {
+      this.router.navigate([], {
+        queryParams: opts ?? {},
+        replaceUrl: true,
+      });
+    }
   }
 }
