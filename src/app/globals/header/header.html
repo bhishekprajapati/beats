@@ -1,3 +1,31 @@
-<header class="bg-[#1e1e1e] py-2">
-  <app-max-container> header content </app-max-container>
+<header class="bg-[#1e1e1e]">
+  <div class="py-4">
+    <app-max-container>
+      <div class="flex items-center gap-4">
+        <img
+          src="/main-logo-beat22.svg"
+          loading="lazy"
+          decoding="async"
+          class="w-[6rem] md:w-[8rem] aspect-[148/41]"
+        />
+
+        <a class="inline-block ms-auto text-sm">Sign In</a>
+        <button
+          class="bg-[linear-gradient(169deg,#7000FF_0%,#7A00FF_31.77%,#8F00FF_100%)] text-sm py-[.6em] px-[.6em] rounded-sm font-bold"
+        >
+          Start Selling
+        </button>
+      </div>
+    </app-max-container>
+
+    <div class="hidden md:block">
+      <div
+        class="my-4 w-full transition-all duration-[0.5s] p-[0.4px] rounded-[1px] bg-[linear-gradient(90deg,rgba(167,167,167,0)_4.17%,rgba(167,167,167,0.5)_28.65%,rgba(167,167,167,0.5)_69.27%,rgba(167,167,167,0)_100%)]"
+      ></div>
+
+      <app-max-container>
+        <p class="uppercase">Beats</p>
+      </app-max-container>
+    </div>
+  </div>
 </header>
