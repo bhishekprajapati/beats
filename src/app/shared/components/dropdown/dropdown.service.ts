@@ -1,6 +1,13 @@
 import { Overlay, OverlayPositionBuilder, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { ElementRef, inject, Injectable, signal, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  ElementRef,
+  inject,
+  Injectable,
+  signal,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +23,11 @@ export class ZardDropdownService {
 
   readonly isOpen = signal(false);
 
-  toggle(triggerElement: ElementRef, template: TemplateRef<unknown>, viewContainerRef: ViewContainerRef) {
+  toggle(
+    triggerElement: ElementRef,
+    template: TemplateRef<unknown>,
+    viewContainerRef: ViewContainerRef,
+  ) {
     if (this.isOpen()) {
       this.close();
     } else {
@@ -24,7 +35,11 @@ export class ZardDropdownService {
     }
   }
 
-  open(triggerElement: ElementRef, template: TemplateRef<unknown>, viewContainerRef: ViewContainerRef) {
+  open(
+    triggerElement: ElementRef,
+    template: TemplateRef<unknown>,
+    viewContainerRef: ViewContainerRef,
+  ) {
     if (this.isOpen()) {
       this.close();
     }
@@ -103,7 +118,9 @@ export class ZardDropdownService {
   private setupKeyboardNavigation() {
     if (!this.overlayRef?.hasAttached()) return;
 
-    const dropdownElement = this.overlayRef.overlayElement.querySelector('[role="menu"]') as HTMLElement;
+    const dropdownElement = this.overlayRef.overlayElement.querySelector(
+      '[role="menu"]',
+    ) as HTMLElement;
     if (!dropdownElement) return;
 
     dropdownElement.addEventListener('keydown', (event: KeyboardEvent) => {
@@ -146,9 +163,9 @@ export class ZardDropdownService {
   private getDropdownItems(): HTMLElement[] {
     if (!this.overlayRef?.hasAttached()) return [];
     const dropdownElement = this.overlayRef.overlayElement;
-    return Array.from(dropdownElement.querySelectorAll('z-dropdown-menu-item, [z-dropdown-menu-item]')).filter(
-      (item: Element) => !item.hasAttribute('data-disabled'),
-    ) as HTMLElement[];
+    return Array.from(
+      dropdownElement.querySelectorAll('z-dropdown-menu-item, [z-dropdown-menu-item]'),
+    ).filter((item: Element) => !item.hasAttribute('data-disabled')) as HTMLElement[];
   }
 
   private navigateItems(direction: number, items: HTMLElement[]) {

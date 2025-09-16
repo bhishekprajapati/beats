@@ -18,5 +18,7 @@ import { dropdownShortcutVariants } from './dropdown.variants';
 export class ZardDropdownMenuShortcutComponent {
   readonly class = input<ClassValue>('');
 
-  protected readonly classes = computed(() => mergeClasses(dropdownShortcutVariants(), this.class()));
+  protected readonly classes = computed(() =>
+    mergeClasses(dropdownShortcutVariants(), this.class()),
+  );
 }
