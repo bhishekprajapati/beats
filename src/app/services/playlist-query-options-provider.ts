@@ -90,12 +90,16 @@ export class PlaylistQueryOptionsProvider {
     }
   }
 
-  updateOptions(opts?: TPlaylistQueryOptions) {
+  updateOptions(opts?: TPlaylistQueryOptions, skipUrlUpdate = false) {
     if (this.platform.isBrowser()) {
-      this.router.navigate([], {
-        queryParams: opts ?? {},
-        replaceUrl: true,
-      });
+      if (skipUrlUpdate) {
+        this.opts.set(opts);
+      } else {
+        this.router.navigate([], {
+          queryParams: opts ?? {},
+          replaceUrl: true,
+        });
+      }
     }
   }
 }

@@ -1,15 +1,48 @@
-<article class="@container">
-  <figure class="w-full mb-4">
-    <img
-      [src]="src"
-      loading="lazy"
-      decoding="async"
-      class="w-full aspect-square object-cover object-center rounded-[2.5cqw] shadow-[-.25rem_.25rem_4rem_#ffffff15]"
-    />
-  </figure>
+@if (layout.isGrid()) {
+  <article class="@container">
+    <figure class="w-full mb-4">
+      <img
+        [src]="src"
+        loading="lazy"
+        decoding="async"
+        class="w-full aspect-square object-cover object-center rounded-[2.5cqw] shadow-[-.25rem_.25rem_4rem_#ffffff25]"
+      />
+    </figure>
 
-  <header>
-    <h3 class="font-medium text-[1rem]">{{ title }}</h3>
-    <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
-  </header>
-</article>
+    <header>
+      <h3 class="font-medium text-[1rem]">{{ title }}</h3>
+      <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+    </header>
+  </article>
+} @else {
+  <article class="flex items-center gap-4">
+    <figure class="w-16 shrink-0">
+      <img
+        [src]="src"
+        loading="lazy"
+        decoding="async"
+        class="w-full aspect-square object-cover object-center rounded-md"
+      />
+    </figure>
+
+    <header>
+      <h3 class="font-medium text-[1rem]">{{ title }}</h3>
+      <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+    </header>
+
+    <span class="ms-auto"></span>
+
+    @if (tags.length > 0) {
+      <div class="hidden md:block">
+        <div class="flex gap-2">
+          @for (tag of tags; let i = $index; track `${tag}-${i}`) {
+            <z-badge zType="secondary" class="font-normal text-xs">{{ tag }}</z-badge>
+          }
+        </div>
+      </div>
+    }
+
+    <app-beat-buy-button [buy_price]="buy_price()"></app-beat-buy-button>
+    <app-beat-actions></app-beat-actions>
+  </article>
+}

@@ -180,4 +180,13 @@ export class PlaylistService {
   }));
 
   constructor(readonly playlistQueryOptions: PlaylistQueryOptionsProvider) {}
+
+  nextPage() {
+    const opts = this.playlistQueryOptions.opts();
+    const nextPageOptions = opts && { ...opts, page: opts.page + 1 };
+
+    if (nextPageOptions) {
+      this.playlistQueryOptions.updateOptions(nextPageOptions, true);
+    }
+  }
 }

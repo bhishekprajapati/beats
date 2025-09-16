@@ -2,101 +2,137 @@
   <h1 class="text-[1rem] md:text-2xl font-medium mb-[max(1rem,2cqw)]">
     Explore <span class="text-accent">Beats</span>
   </h1>
-
-  <ul class="flex items-center gap-4 mb-10 overflow-y-auto scrollbar-none">
-    <li>
-      <button
-        z-button
-        zType="outline"
-        class="cursor-pointer bg-[#262626] rounded-full hover:bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)] transition-colors"
-        [class]="
-          playlist.playlistQueryOptions.isTrendingActive()
-            ? 'bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)]'
-            : ''
-        "
-        (click)="
-          playlist.playlistQueryOptions.updateOptions({
-            playlist: 'trending',
-            page: 1,
-            pageSize: 50,
-          })
-        "
-      >
-        Trending Beats
-      </button>
-    </li>
-
-    <li>
-      <button
-        z-button
-        zType="outline"
-        class="cursor-pointer rounded-full hover:outline-transparent hover:bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)] transition-colors"
-        [class]="
-          playlist.playlistQueryOptions.hasWavUnder999Filter()
-            ? 'bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)]'
-            : ''
-        "
-        (click)="
-          playlist.playlistQueryOptions.updateOptions({
-            playlist: 'latest',
-            page: 1,
-            pageSize: 50,
-            filter: 'wav_under_999',
-          })
-        "
-      >
-        WAV under ₹999
-      </button>
-    </li>
-
-    <li>
-      <button
-        z-button
-        zType="outline"
-        class="cursor-pointer rounded-full hover:bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)] transition-colors"
-        [class]="
-          playlist.playlistQueryOptions.hasWavStemsUnder1999Filter()
-            ? 'bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)]'
-            : ''
-        "
-        (click)="
-          playlist.playlistQueryOptions.updateOptions({
-            playlist: 'latest',
-            page: 1,
-            pageSize: 50,
-            filter: 'wav_stems_1999',
-          })
-        "
-      >
-        Wav + Stems under ₹1,999
-      </button>
-    </li>
-
-    <li>
-      <button
-        z-button
-        zType="outline"
-        class="cursor-pointer rounded-full hover:bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)] hover:text-black transition-colors"
-        [class]="
-          playlist.playlistQueryOptions.hasBeatsWithExclusiveFilter()
-            ? 'bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)]'
-            : ''
-        "
-        (click)="
-          playlist.playlistQueryOptions.updateOptions({
-            playlist: 'latest',
-            page: 1,
-            pageSize: 50,
-            filter: 'beats_with_exclusive',
-          })
-        "
-      >
-        Beats With Exclusive
-      </button>
-    </li>
-  </ul>
+  <!---->
+  <!-- <ul class="flex items-center gap-4 mb-10 overflow-y-auto scrollbar-none"> -->
+  <!--   <li> -->
+  <!--     <button -->
+  <!--       z-button -->
+  <!--       zType="outline" -->
+  <!--       class="cursor-pointer bg-[#262626] rounded-full hover:bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)] transition-colors" -->
+  <!--       [class]=" -->
+  <!--         playlist.playlistQueryOptions.isTrendingActive() -->
+  <!--           ? 'bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)]' -->
+  <!--           : '' -->
+  <!--       " -->
+  <!--       (click)=" -->
+  <!--         playlist.playlistQueryOptions.updateOptions({ -->
+  <!--           playlist: 'trending', -->
+  <!--           page: 1, -->
+  <!--           pageSize: 50, -->
+  <!--         }) -->
+  <!--       " -->
+  <!--     > -->
+  <!--       Trending Beats -->
+  <!--     </button> -->
+  <!--   </li> -->
+  <!---->
+  <!--   <li> -->
+  <!--     <button -->
+  <!--       z-button -->
+  <!--       zType="outline" -->
+  <!--       class="cursor-pointer rounded-full hover:outline-transparent hover:bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)] transition-colors" -->
+  <!--       [class]=" -->
+  <!--         playlist.playlistQueryOptions.hasWavUnder999Filter() -->
+  <!--           ? 'bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)]' -->
+  <!--           : '' -->
+  <!--       " -->
+  <!--       (click)=" -->
+  <!--         playlist.playlistQueryOptions.updateOptions({ -->
+  <!--           playlist: 'latest', -->
+  <!--           page: 1, -->
+  <!--           pageSize: 50, -->
+  <!--           filter: 'wav_under_999', -->
+  <!--         }) -->
+  <!--       " -->
+  <!--     > -->
+  <!--       WAV under ₹999 -->
+  <!--     </button> -->
+  <!--   </li> -->
+  <!---->
+  <!--   <li> -->
+  <!--     <button -->
+  <!--       z-button -->
+  <!--       zType="outline" -->
+  <!--       class="cursor-pointer rounded-full hover:bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)] transition-colors" -->
+  <!--       [class]=" -->
+  <!--         playlist.playlistQueryOptions.hasWavStemsUnder1999Filter() -->
+  <!--           ? 'bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)]' -->
+  <!--           : '' -->
+  <!--       " -->
+  <!--       (click)=" -->
+  <!--         playlist.playlistQueryOptions.updateOptions({ -->
+  <!--           playlist: 'latest', -->
+  <!--           page: 1, -->
+  <!--           pageSize: 50, -->
+  <!--           filter: 'wav_stems_1999', -->
+  <!--         }) -->
+  <!--       " -->
+  <!--     > -->
+  <!--       Wav + Stems under ₹1,999 -->
+  <!--     </button> -->
+  <!--   </li> -->
+  <!---->
+  <!--   <li> -->
+  <!--     <button -->
+  <!--       z-button -->
+  <!--       zType="outline" -->
+  <!--       class="cursor-pointer rounded-full hover:bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)] hover:text-black transition-colors" -->
+  <!--       [class]=" -->
+  <!--         playlist.playlistQueryOptions.hasBeatsWithExclusiveFilter() -->
+  <!--           ? 'bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)]' -->
+  <!--           : '' -->
+  <!--       " -->
+  <!--       (click)=" -->
+  <!--         playlist.playlistQueryOptions.updateOptions({ -->
+  <!--           playlist: 'latest', -->
+  <!--           page: 1, -->
+  <!--           pageSize: 50, -->
+  <!--           filter: 'beats_with_exclusive', -->
+  <!--         }) -->
+  <!--       " -->
+  <!--     > -->
+  <!--       Beats With Exclusive -->
+  <!--     </button> -->
+  <!--   </li> -->
+  <!-- </ul> -->
+  <!---->
 
   <app-content-view-root>
-    <app-playlist-beats-view></app-playlist-beats-view>
+    <div class="mb-9 flex items-center">
+      <span class="ms-auto">
+        <app-content-view-toggle></app-content-view-toggle>
+      </span>
+    </div>
+
+    <app-content-view-content>
+      @if (query.infiniteQuery.isSuccess()) {
+        @let pages = query.infiniteQuery.data().pages;
+
+        @for (page of pages; track page.pageNumber) {
+          @for (beat of page.beats; track beat._id) {
+            <app-content-view-item>
+              <app-beat-card
+                [src]="beat.cover_picture"
+                [title]="beat.title"
+                [storeName]="beat.producer.store.general.name"
+                [tags]="beat.tag"
+                [prices]="beat.prices"
+              >
+              </app-beat-card>
+            </app-content-view-item>
+          }
+        }
+
+        @if (pages.length > 0) {
+          <div
+            appInView
+            (inView)="query.infiniteQuery.fetchNextPage()"
+            class="col-span-full text-center py-6"
+          >
+            <z-loader></z-loader>
+          </div>
+        }
+      }
+    </app-content-view-content>
   </app-content-view-root>
 </div>

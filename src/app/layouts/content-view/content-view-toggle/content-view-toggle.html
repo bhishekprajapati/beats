@@ -1,0 +1,16 @@
+<div class="bg-[#2c2c2c] w-fit text-sm rounded-full inline-flex items-center">
+  <button
+    class="flex items-center p-2 rounded-full cursor-pointer transition-colors duration-200"
+    [class]="layout.isList() ? 'bg-[#4c4c4c]' : ''"
+    (click)="layout.toggle()"
+  >
+    <lucide-angular name="menu" size="16"></lucide-angular>
+  </button>
+  <button
+    class="flex items-center p-2 rounded-full cursor-pointer transition-colors duration-200"
+    [class]="layout.isGrid() ? 'bg-[#4c4c4c]' : ''"
+    (click)="layout.toggle()"
+  >
+    <lucide-angular name="grid2x2" size="16"></lucide-angular>
+  </button>
+</div>

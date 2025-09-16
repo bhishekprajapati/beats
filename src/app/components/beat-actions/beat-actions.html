@@ -1,0 +1,27 @@
+<button
+  z-button
+  z-dropdown
+  [zDropdownMenu]="menu"
+  zType="ghost"
+  zSize="icon"
+  class="cursor-pointer"
+>
+  <lucide-angular name="ellipsis-vertical"></lucide-angular>
+</button>
+
+<z-dropdown-menu-content #menu="zDropdownMenuContent" class="w-56">
+  <z-dropdown-menu-item (click)="onProfile()">
+    <lucide-angular name="share-2"></lucide-angular>
+    Share
+  </z-dropdown-menu-item>
+
+  <z-dropdown-menu-item (click)="onBilling()">
+    <lucide-angular name="download"></lucide-angular>
+    Downloads
+  </z-dropdown-menu-item>
+
+  <z-dropdown-menu-item (click)="onSettings()">
+    <lucide-angular name="heart"></lucide-angular>
+    Favorite
+  </z-dropdown-menu-item>
+</z-dropdown-menu-content>
