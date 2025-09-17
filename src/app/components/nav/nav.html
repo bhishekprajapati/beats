@@ -9,7 +9,8 @@
     <li>
       <app-nav-link
         [isLinkActive]="isLatestBeatPage() && hasWavUnder999Filter()"
-        to="/latest-beats?wav_under_999=true"
+        to="/latest-beats"
+        [queryParams]="{ filter: 'wav_under_999' }"
         variant="cyan"
       >
         WAV under ₹999
@@ -19,7 +20,8 @@
     <li>
       <app-nav-link
         [isLinkActive]="isLatestBeatPage() && hasWavStemsUnder1999Filter()"
-        to="/latest-beats?wav_stems_under_1999=true"
+        to="/latest-beats"
+        [queryParams]="{ filter: 'wav_stems_1999' }"
         variant="purple"
       >
         Wav + Stems under ₹1,999
@@ -29,7 +31,8 @@
     <li>
       <app-nav-link
         [isLinkActive]="isLatestBeatPage() && hasBeatsWithExclusiveFilter()"
-        to="/latest-beats?beats_with_exclusive=true"
+        to="/latest-beats"
+        [queryParams]="{ filter: 'beats_with_exclusive' }"
         variant="yellow"
       >
         Beats With Exclusive

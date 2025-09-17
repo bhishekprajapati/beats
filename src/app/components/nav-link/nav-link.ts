@@ -11,8 +11,5 @@ export class NavLink {
   @Input() isLinkActive!: boolean;
   @Input() variant!: 'purple' | 'cyan' | 'yellow';
   @Input() to!: string;
-
-  ngOnInit() {
-    console.log(this.to, ' ', this.isLinkActive);
-  }
+  @Input() queryParams?: Record<string, any>;
 }

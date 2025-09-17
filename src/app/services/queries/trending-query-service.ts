@@ -4,6 +4,7 @@ import { injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
 import { OriginService } from '../origin-service';
 
+@Injectable()
 export class TrendingQueryService {
   readonly queryClient = inject(QueryClient);
   private readonly http = inject(HttpClient);

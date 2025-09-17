@@ -1,0 +1,51 @@
+<div class="@container pb-10">
+  <h1 class="text-[1rem] md:text-2xl font-medium mb-[max(1rem,2cqw)]">
+    Explore <span class="text-accent">Beats</span>
+  </h1>
+
+  <app-nav></app-nav>
+
+  <app-content-view-root>
+    <div class="mb-9 flex items-center">
+      <span class="ms-auto">
+        <app-content-view-toggle></app-content-view-toggle>
+      </span>
+    </div>
+
+    <app-content-view-content>
+      @if (query.query.isSuccess()) {
+        @let pageCount = query.query.data().pages.length;
+        @let pages = query.query.data().pages;
+
+        @for (page of pages; track $index) {
+          @let beats = page;
+          @for (beat of beats; track beat._id) {
+            <app-content-view-item>
+              <app-beat-card
+                [src]="beat.cover_picture"
+                [title]="beat.title"
+                [storeName]="beat.producer.store.general.name"
+                [tags]="beat.tag"
+                [prices]="beat.prices"
+                [tempo]="beat.tempo"
+                [key]="beat.key"
+                [producer]="beat.producer"
+              >
+              </app-beat-card>
+            </app-content-view-item>
+          }
+        }
+
+        @if (pageCount > 0) {
+          <div
+            appInView
+            (inView)="query.query.fetchNextPage()"
+            class="col-span-full text-center py-6"
+          >
+            <z-loader></z-loader>
+          </div>
+        }
+      }
+    </app-content-view-content>
+  </app-content-view-root>
+</div>
