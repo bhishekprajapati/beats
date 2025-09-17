@@ -22,6 +22,8 @@ import {
   Play,
   Share2,
   ShoppingCart,
+  AudioLines,
+  Music2,
 } from 'lucide-angular';
 import { routes } from './app.routes';
 
@@ -43,6 +45,8 @@ export const appConfig: ApplicationConfig = {
         Share2,
         Download,
         Heart,
+        AudioLines,
+        Music2,
       }),
     ),
   ],

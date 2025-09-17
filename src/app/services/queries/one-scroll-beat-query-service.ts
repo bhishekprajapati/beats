@@ -27,7 +27,7 @@ export class OneScrollQuerySerivce {
 type TProducer = {
   _id: string;
   user: string;
-  is_verified: false;
+  is_verfied: boolean;
   store: {
     general: {
       name: string;

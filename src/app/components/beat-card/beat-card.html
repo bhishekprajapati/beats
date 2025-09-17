@@ -10,39 +10,78 @@
     </figure>
 
     <header>
-      <h3 class="font-medium text-[1rem]">{{ title }}</h3>
-      <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+      <div class="flex items-center justify-between">
+        <div class="hidden [@media(min-width:30rem)]:inline-flex items-center gap-1">
+          <lucide-angular name="audio-lines" size="12" class="text-purple-300"></lucide-angular>
+          <span class="inline-block font-medium text-[.75rem]"> {{ tempo }} BPM </span>
+        </div>
+        <app-beat-buy-button [isSmall]="true" [buy_price]="buyPrice()"></app-beat-buy-button>
+      </div>
+
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="font-medium text-[1rem]">{{ title }}</h3>
+          <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+        </div>
+
+        <app-beat-actions></app-beat-actions>
+      </div>
     </header>
   </article>
 } @else {
   <article class="flex items-center gap-4">
-    <figure class="w-16 shrink-0">
+    <figure class="w-12 shrink-0">
       <img
         [src]="src"
         loading="lazy"
         decoding="async"
-        class="w-full aspect-square object-cover object-center rounded-md"
+        class="w-full aspect-square object-cover object-center rounded-sm"
       />
     </figure>
 
     <header>
-      <h3 class="font-medium text-[1rem]">{{ title }}</h3>
-      <p class="font-normal text-[.875rem] text-[#8f8f8f]">{{ storeName }}</p>
+      <h3 class="font-medium text-[.75rem]">{{ title }}</h3>
+
+      <div class="flex items-center gap-3">
+        <p class="font-normal text-[.875rem] text-[#8f8f8f] inline-flex gap-1 items-center">
+          {{ storeName }}
+          @if (isVerified()) {
+            <img
+              class="w-[1em] h-[1em]"
+              src="/subs_premium_tick_img.png"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+        </p>
+
+        <div class="hidden [@media(min-width:30rem)]:inline-flex items-center gap-1">
+          <lucide-angular name="audio-lines" size="12" class="text-purple-300"></lucide-angular>
+          <span class="inline-block font-medium text-[.75rem]"> {{ tempo }} BPM </span>
+        </div>
+
+        <div class="hidden sm:inline-flex items-center gap-1">
+          <lucide-angular name="music-2" size="12" class="text-purple-300"></lucide-angular>
+          <span class="inline-block font-medium text-[.75rem] capitalize">
+            {{ transformedKey() }}
+          </span>
+        </div>
+      </div>
     </header>
 
     <span class="ms-auto"></span>
 
     @if (tags.length > 0) {
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <div class="flex gap-2">
           @for (tag of tags; let i = $index; track `${tag}-${i}`) {
-            <z-badge zType="secondary" class="font-normal text-xs">{{ tag }}</z-badge>
+            <z-badge zType="secondary" class="font-normal text-[.625rem]">{{ tag }}</z-badge>
           }
         </div>
       </div>
     }
 
-    <app-beat-buy-button [buy_price]="buy_price()"></app-beat-buy-button>
+    <app-beat-buy-button [buy_price]="buyPrice()"></app-beat-buy-button>
     <app-beat-actions></app-beat-actions>
   </article>
 }

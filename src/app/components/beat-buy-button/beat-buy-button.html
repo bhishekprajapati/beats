@@ -1,6 +1,15 @@
-<button
-  class="inline-flex items-center justify-center text-sm bg-[linear-gradient(110.3deg,#7000FF_36.5%,#8F00FF_93.9%)] py-[.5em] px-[2em] rounded-[.24em] gap-[.5em] w-24"
->
-  <lucide-angular name="shopping-cart" size="16"></lucide-angular>
-  ₹{{ buy_price }}
-</button>
+@if (isSmall) {
+  <button
+    class="text-[.75rem] inline-flex items-center gap-2 border border-purple-400 px-[.5em] rounded-sm bg-purple-400/5"
+  >
+    <lucide-angular name="shopping-cart" class="w-[1em]"></lucide-angular>
+    ₹{{ buy_price }}
+  </button>
+} @else {
+  <button
+    class="inline-flex items-center justify-center text-sm bg-[linear-gradient(110.3deg,#7000FF_36.5%,#8F00FF_93.9%)] py-[.5em] px-[2em] rounded-[.24em] gap-[.5em] w-24"
+  >
+    <lucide-angular name="shopping-cart" size="16"></lucide-angular>
+    ₹{{ buy_price }}
+  </button>
+}

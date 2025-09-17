@@ -8,4 +8,5 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class BeatBuyButton {
   @Input() buy_price!: number;
+  @Input() isSmall = false;
 }
