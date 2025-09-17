@@ -68,8 +68,8 @@ export class LatestBeatQueryService {
 
       const result = await lastValueFrom(
         this.http.post<TQueryResult>(url, {
-          ...beatFilter,
-          ...page,
+          page,
+          filter: beatFilter,
         }),
       );
 

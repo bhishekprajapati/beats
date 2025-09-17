@@ -25,6 +25,7 @@ export class InViewDirective implements AfterViewInit, OnDestroy {
         ([entry]) => {
           if (entry.isIntersecting) {
             this.inView.emit();
+            console.log('in view...');
           }
         },
         {

@@ -14,7 +14,6 @@
 
     <app-content-view-content>
       @if (query.query.isSuccess()) {
-        @let pageCount = query.query.data().pages.length;
         @let pages = query.query.data().pages;
 
         @for (page of pages; track $index) {
@@ -36,7 +35,7 @@
           }
         }
 
-        @if (pageCount > 0) {
+        @if (query.query.data().pages.length > 0) {
           <div
             appInView
             (inView)="query.query.fetchNextPage()"
