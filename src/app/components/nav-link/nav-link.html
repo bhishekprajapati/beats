@@ -1,0 +1,20 @@
+<a
+  class="inline-block cursor-pointer bg-[#262626] rounded-full transition-colors px-[1em] py-[.5em] text-sm border border-gray-700"
+  [ngClass]="{
+    'hover:bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)]': variant === 'purple',
+    'hover:bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)]': variant === 'cyan',
+    'hover:bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)]': variant === 'yellow',
+
+    'bg-[linear-gradient(110deg,#7000FF_36.5%,#8F00FF_93.9%)] !border-transparent':
+      isLinkActive && variant === 'purple',
+
+    'bg-[linear-gradient(110deg,#0d6efd_36.5%,#0dcaf0_93.9%)] !border-transparent':
+      isLinkActive && variant === 'cyan',
+
+    'bg-[linear-gradient(110deg,#ffc107_36.5%,#ffc107_93.9%)] !border-transparent':
+      isLinkActive && variant === 'yellow',
+  }"
+  [routerLink]="to"
+>
+  <ng-content></ng-content>
+</a>

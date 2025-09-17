@@ -7,6 +7,7 @@ import { InViewDirective } from '@/app/directives/in-view-directive';
 import { ContentViewItem } from '@/app/layouts/content-view/content-view-item/content-view-item';
 import { BeatCard } from '@components/beat-card/beat-card';
 import { ContentViewToggle } from '@/app/layouts/content-view/content-view-toggle/content-view-toggle';
+import { Nav } from '@components/nav/nav';
 
 @Component({
   selector: 'app-page-beats',
@@ -18,6 +19,7 @@ import { ContentViewToggle } from '@/app/layouts/content-view/content-view-toggl
     BeatCard,
     ZardLoaderComponent,
     InViewDirective,
+    Nav,
   ],
   templateUrl: './beats.html',
   providers: [OneScrollQuerySerivce],

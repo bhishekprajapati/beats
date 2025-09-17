@@ -1,0 +1,39 @@
+<nav class="overflow-y-auto scrollbar-none">
+  <ul class="flex items-center gap-4 mb-10 [&>*]:shrink-0">
+    <li>
+      <app-nav-link [isLinkActive]="isTrendingBeatsPage()" to="/trending-beats" variant="purple">
+        Trending Beats
+      </app-nav-link>
+    </li>
+
+    <li>
+      <app-nav-link
+        [isLinkActive]="isLatestBeatPage() && hasWavUnder999Filter()"
+        to="/latest-beats?wav_under_999=true"
+        variant="cyan"
+      >
+        WAV under ₹999
+      </app-nav-link>
+    </li>
+
+    <li>
+      <app-nav-link
+        [isLinkActive]="isLatestBeatPage() && hasWavStemsUnder1999Filter()"
+        to="/latest-beats?wav_stems_under_1999=true"
+        variant="purple"
+      >
+        Wav + Stems under ₹1,999
+      </app-nav-link>
+    </li>
+
+    <li>
+      <app-nav-link
+        [isLinkActive]="isLatestBeatPage() && hasBeatsWithExclusiveFilter()"
+        to="/latest-beats?beats_with_exclusive=true"
+        variant="yellow"
+      >
+        Beats With Exclusive
+      </app-nav-link>
+    </li>
+  </ul>
+</nav>
