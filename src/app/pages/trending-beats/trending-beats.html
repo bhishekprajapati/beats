@@ -1,0 +1,35 @@
+<div class="@container pb-10">
+  <h1 class="text-[1rem] md:text-2xl font-medium mb-[max(1rem,2cqw)]">
+    Explore <span class="text-accent">Beats</span>
+  </h1>
+
+  <app-content-view-root>
+    <div class="mb-9 flex items-center">
+      <span class="ms-auto">
+        <app-content-view-toggle></app-content-view-toggle>
+      </span>
+    </div>
+
+    <app-content-view-content>
+      @if (query.query.isSuccess()) {
+        @let beats = query.query.data().playlists[0].beats;
+
+        @for (beat of beats; track beat._id) {
+          <app-content-view-item>
+            <app-beat-card
+              [src]="beat.cover_picture"
+              [title]="beat.title"
+              [storeName]="beat.producer.store.general.name"
+              [tags]="beat.tag"
+              [prices]="beat.prices"
+              [tempo]="beat.tempo"
+              [key]="beat.key"
+              [producer]="beat.producer"
+            >
+            </app-beat-card>
+          </app-content-view-item>
+        }
+      }
+    </app-content-view-content>
+  </app-content-view-root>
+</div>
